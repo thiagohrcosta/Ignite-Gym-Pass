@@ -1,12 +1,30 @@
-import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../users-repository";
+import { UsersRepository } from '@/repositories/users-repository'
+import { User, Prisma } from '@prisma/client'
 
-class InMemoryUserRepository implements UsersRepository {
-  findByEmail(email: string): Promise<User | null> {
-    throw new Error("Method not implemented.");
+export class InMemoryUsersRepository implements UsersRepository {
+  public items: User[] = []
+
+  async findByEmail(email: string) {
+    const user = this.items.find((item) => item.email === email)
+
+    if (!user) {
+      return null
+    }
+
+    return user
   }
 
-  create(data: Prisma.UserCreateInput): Promise<User> {
-    throw new Error("Method not implemented.");
+  async create(data: Prisma.UserCreateInput) {
+    const user = {
+      id: 'user-1',
+      name: data.name,
+      email: data.email,
+      password_hash: data.password_hash,
+      created_at: new Date(),
+    }
+
+    this.items.push(user)
+
+    return user
   }
 }

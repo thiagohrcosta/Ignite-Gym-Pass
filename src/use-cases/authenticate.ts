@@ -8,7 +8,7 @@ interface AuthenticateUseCaseRequest {
   password: string;
 }
 
-type AuthenticateUseCaseResponse {
+interface AuthenticateUseCaseResponse {
   user: User;
 }
 

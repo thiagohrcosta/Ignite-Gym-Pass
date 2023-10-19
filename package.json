@@ -29,6 +29,7 @@
     "vitest": "0.29.8"
   },
   "dependencies": {
+    "@fastify/jwt": "7.2.2",
     "@prisma/client": "4.11.0",
     "@vitest/coverage-c8": "0.29.8",
     "bcryptjs": "2.4.3",
